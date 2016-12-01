@@ -1,6 +1,6 @@
 const roleHarvester = require('role.harvester');
 const roleUpgrader = require('role.upgrader');
-const roomManager = require('manager.room');
+const roomManager = require('room.manager');
 
 module.exports.loop = function () {
 
