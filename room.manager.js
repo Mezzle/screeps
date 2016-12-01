@@ -1,4 +1,4 @@
-const Room = require('room.model=');
+const Room = require('room.model');
 
 const RoomManager = {
     rooms: [],
