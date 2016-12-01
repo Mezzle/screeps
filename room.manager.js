@@ -3,9 +3,11 @@ const Room = require('room.model');
 const RoomManager = {
     rooms: [],
     init: () => {
-        Game.rooms.forEach((room) => {
-            rooms.push(new Room(room));
-        })
+        for (room in Game.rooms) {
+            if (Game.rooms.hasOwnProperty(room)) {
+                RoomManager.rooms.push(new Room(Game.rooms[room]));
+            }
+        }
     }
 };
 
