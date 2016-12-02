@@ -1,15 +1,23 @@
 const BaseCreep = require('role.creep');
 
-module.exports = new class extends BaseCreep {
-    parts = [WORK, CARRY, MOVE];
-    role: 'harvester';
+class Harvester extends BaseCreep {
+    constructor() {
+        super();
+        this.parts = [WORK, CARRY, MOVE];
+        this.role = 'harvester';
+
+        this.limit = 2;
+    }
+
 
     run(creep) {
         if (creep.carry.energy < creep.carryCapacity) {
-            actions.harvest(creep);
+            this.actions.harvest(creep);
         }
         else {
-            actions.upgrade(creep);
+            this.actions.upgrade(creep);
         }
     }
-};
+}
+
+module.exports = new Harvester;

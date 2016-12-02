@@ -2,10 +2,14 @@ const harvest = require('action.harvest');
 const upgrade = require('action.upgrade');
 
 module.exports = class {
-    actions = {
-        'upgrade': upgrade,
-        'harvest': harvest
-    };
+    constructor() {
+        this.actions = {
+            'upgrade': upgrade,
+            'harvest': harvest
+        };
+
+        this.limit = 1;
+    }
 
     /**
      * spawn
