@@ -1,6 +1,6 @@
 const BaseCreep = require('role.creep');
 
-module.exports = new class extends Harvester {
+module.exports = new class extends BaseCreep {
     constructor() {
         super();
         this.role = 'collector';
