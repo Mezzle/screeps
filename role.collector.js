@@ -27,17 +27,25 @@ module.exports = new class extends BaseCreep {
     }
 
     findTarget(creep) {
-        const myMiners = _(Game.creeps).filter({memory: {role: 'miner', collector: creep.name}});
+        let targetMiner;
 
-        if (myMiners.length > 0) {
-            return creep.room.lookForAt(LOOK_RESOURCES, myMiners[0].pos);
+        for (let name in Game.creeps) {
+            if (Game.creeps.hasOwnProperty(name)) {
+                let checkCreep = Game.creeps[name];
+
+                if (checkCreep.memory.collector) {
+                    if (checkCreep.memory.collector = creep.name) {
+                        targetMiner = checkCreep;
+                        break;
+                    }
+                } else {
+                    targetMiner = checkCreep;
+                }
+            }
         }
 
-        const miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner' && !creep.memory.collector);
-
-        if (miners.length > 0) {
-            miners[0].memory.collector = creep.name;
-            return creep.room.lookForAt(LOOK_RESOURCES, miners[0].pos);
+        if (targetMiner) {
+            return creep.room.lookForAt(LOOK_RESOURCES, targetMiner.pos);
         }
 
         return false;
