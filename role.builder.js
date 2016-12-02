@@ -5,7 +5,7 @@ module.exports = new class extends BaseCreep {
     constructor() {
         super();
         this.role = 'builder';
-        this.limit = 3;
+        this.limit = 0;
     }
 
     /** @param {Creep} creep **/
