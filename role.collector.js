@@ -6,7 +6,7 @@ module.exports = new class extends BaseCreep {
         this.parts = [CARRY, MOVE, MOVE];
         this.role = 'collector';
 
-        this.limit = 1;
+        this.limit = 5;
     }
 
     /** @param {Creep} creep **/
@@ -38,7 +38,7 @@ module.exports = new class extends BaseCreep {
                         targetMiner = checkCreep;
                         break;
                     }
-                } else {
+                } else {z
                     targetMiner = checkCreep;
                 }
             }
