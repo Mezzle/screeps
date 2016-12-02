@@ -34,17 +34,19 @@ module.exports = new class extends BaseCreep {
                 let checkCreep = Game.creeps[name];
 
                 if (checkCreep.memory.collector) {
-                    if (checkCreep.memory.collector = creep.name) {
+                    if (checkCreep.memory.collector == creep.name) {
                         targetMiner = checkCreep;
                         break;
                     }
-                } else {z
+                } else {
                     targetMiner = checkCreep;
                 }
             }
         }
 
         if (targetMiner) {
+            targetMiner.memory.collector = creep.name;
+            creep.say('Target acquired: ' + targetMiner.name);
             return creep.room.lookForAt(LOOK_ENERGY, targetMiner.pos)[0];
         }
 
