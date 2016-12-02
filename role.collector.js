@@ -55,6 +55,6 @@ module.exports = new class extends BaseCreep {
             return creep.room.lookForAt(LOOK_ENERGY, targetMiner.pos)[0];
         }
 
-        return false;
+        return creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
     }
 };
