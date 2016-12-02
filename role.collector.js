@@ -45,8 +45,11 @@ module.exports = new class extends BaseCreep {
         }
 
         if (targetMiner) {
-            targetMiner.memory.collector = creep.name;
-            creep.say('Target acquired: ' + targetMiner.name);
+            if (!targetMiner.memory.collector) {
+                targetMiner.memory.collector = creep.name;
+                creep.say(targetMiner.name);
+            }
+
             return creep.room.lookForAt(LOOK_ENERGY, targetMiner.pos)[0];
         }
 
