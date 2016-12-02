@@ -29,7 +29,7 @@ module.exports = new class extends BaseCreep {
             }
         }
         else {
-            harvest(creep);
+            this.actions.harvest(creep);
         }
     }
 };
