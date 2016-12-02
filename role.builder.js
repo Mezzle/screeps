@@ -28,6 +28,9 @@ module.exports = new class extends BaseCreep {
                     creep.moveTo(targets[0]);
                 }
             }
+            else {
+                this.actions.depositEnergy(creep);
+            }
         }
         else {
             this.actions.harvest(creep);
