@@ -1,11 +1,13 @@
 const harvest = require('action.harvest');
 const upgrade = require('action.upgrade');
+const depositEnergy = require('action.depositenergy');
 
 module.exports = class {
     constructor() {
         this.actions = {
             'upgrade': upgrade,
-            'harvest': harvest
+            'harvest': harvest,
+            'depositEnergy': depositEnergy
         };
 
         this.limit = 1;

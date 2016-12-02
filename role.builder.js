@@ -1,9 +1,15 @@
-const harvest = require('action.harvest');
+const BaseCreep = require('role.creep');
 
-const roleBuilder = {
+module.exports = new class extends BaseCreep {
+
+    constructor() {
+        super();
+        this.parts = [WORK, CARRY, MOVE];
+        this.role = 'builder';
+    }
 
     /** @param {Creep} creep **/
-    run: function (creep) {
+    run(creep) {
 
         if (creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
@@ -27,5 +33,3 @@ const roleBuilder = {
         }
     }
 };
-
-module.exports = roleBuilder;
