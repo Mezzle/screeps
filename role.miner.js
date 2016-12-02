@@ -11,8 +11,8 @@ module.exports = new class extends BaseCreep {
 
     /** @param {Creep} creep **/
     run(creep) {
-        const collectors = Game.creeps.filter({memory: {role: 'collector'}}).length;
-        const miners = Game.creeps.filter({memory: {role: 'miner'}}).length;
+        const collectors = _(Game.creeps).filter({memory: {role: 'collector'}}).length;
+        const miners = _(Game.creeps).filter({memory: {role: 'miner'}}).length;
 
         if (miners == collectors) {
             this.actions.harvest(creep);
