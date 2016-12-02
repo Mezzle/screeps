@@ -14,7 +14,7 @@ module.exports = new class extends BaseCreep {
         const collectors = _(Game.creeps).filter({memory: {role: 'collector'}}).length;
         const miners = _(Game.creeps).filter({memory: {role: 'miner'}}).length;
 
-        if (miners == collectors) {
+        if (miners > collectors && !('collector' in creep.memory)) {
             this.actions.harvest(creep);
             if (creep.carry.energy) {
                 creep.drop(RESOURCE_ENERGY, creep.carry.energy);
