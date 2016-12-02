@@ -40,7 +40,7 @@ module.exports = new class {
         for (k in this.roles) {
             if (this.roles.hasOwnProperty(k)) {
                 let roleCount = _.filter(Game.creeps, (creep) => creep.memory.role == k);
-                console.log(k + ': ' + harvesters.length);
+                console.log(k + ': ' + roleCount);
 
                 if (roleCount < this.roles[k].limit) {
                     this.spawn(k, Game.spawns['Spawn1']); // Todo: Dynamic Spawns
