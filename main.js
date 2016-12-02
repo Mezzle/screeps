@@ -1,9 +1,7 @@
-const roleHarvester = require('role.harvester');
-const roleUpgrader = require('role.upgrader');
 const roomManager = require('room.manager');
+const creepManager = require('creep.manager');
 
 module.exports.loop = function () {
-
     roomManager.init();
 
     let name;
@@ -32,15 +30,5 @@ module.exports.loop = function () {
         console.log('Spawning new upgrader: ' + newName);
     }
 
-    for (name in Game.creeps) {
-        if (Game.creeps.hasOwnProperty(name)) {
-            const creep = Game.creeps[name];
-            if (creep.memory.role == 'harvester') {
-                roleHarvester.run(creep);
-            }
-            if (creep.memory.role == 'upgrader') {
-                roleUpgrader.run(creep);
-            }
-        }
-    }
+    creepManager.run();
 };
