@@ -12,6 +12,7 @@ module.exports = new class {
 
         this.roleLimits = {};
 
+        let k;
         for (k in this.roles) {
             if (this.roles.hasOwnProperty(k)) {
                 this.roleLimits[k] = this.roles[k].limit;
