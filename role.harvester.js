@@ -1,26 +1,10 @@
-const roleHarvester = {
+const harvest = require('action.harvest');
 
-    /** @param {Creep} creep **/
+const roleHarvester = {
+ /** @param {Creep} creep **/
     run: function (creep) {
         if (creep.carry.energy < creep.carryCapacity) {
-            const sources = creep.room.find(FIND_SOURCES);
-
-            let closestSource = {};
-            const closestSourceDistance = 65535;
-
-            for (source in sources) {
-                if (sources.hasOwnProperty(source)) {
-                    /** @param {Source} currentSource */
-                    const currentSource = sources[source];
-
-                    if (currentSource.pos.getRangeTo(creep.pos) < closestSourceDistance) {
-                        closestSource = currentSource;
-                    }
-                }
-            }
-            if (creep.harvest(closestSource) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(closestSource);
-            }
+            harvest(creep);
         }
         else {
             const targets = creep.room.find(FIND_STRUCTURES, {
