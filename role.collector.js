@@ -45,7 +45,7 @@ module.exports = new class extends BaseCreep {
         }
 
         if (targetMiner) {
-            return creep.room.lookForAt(LOOK_RESOURCES, targetMiner.pos);
+            return creep.room.lookForAt(LOOK_ENERGY, targetMiner.pos)[0];
         }
 
         return false;
