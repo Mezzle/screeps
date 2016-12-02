@@ -39,7 +39,7 @@ module.exports = new class {
         let k;
         for (k in this.roles) {
             if (this.roles.hasOwnProperty(k)) {
-                let roleCount = _.filter(Game.creeps, (creep) => creep.memory.role == k);
+                let roleCount = _.filter(Game.creeps, (creep) => creep.memory.role == k).length;
                 console.log(k + ': ' + roleCount);
 
                 if (roleCount < this.roles[k].limit) {
