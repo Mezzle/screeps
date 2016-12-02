@@ -37,6 +37,11 @@ module.exports = new class {
                     delete Memory.creeps[name];
                     console.log('Clearing non-existing creep memory:', name);
                 }
+                if (Memory.creeps[name].collector) {
+                    if (!Game.creeps[Memory.creeps[name].collector]) {
+                        delete Memory.creeps[name].collector;
+                    }
+                }
             }
         }
 
