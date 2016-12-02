@@ -1,13 +1,15 @@
 const roleBuilder = require('role.builder');
 const roleHarvester = require('role.harvester');
 const roleUpgrader = require('role.upgrader');
+const roleCollector = require('role.collector');
 
 module.exports = new class {
     constructor() {
         this.roles = {
             'builder': roleBuilder,
             'harvester': roleHarvester,
-            'upgrader': roleUpgrader
+            'upgrader': roleUpgrader,
+            'collector': roleCollector
         };
 
         this.roleLimits = {};
