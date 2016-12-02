@@ -11,7 +11,7 @@ module.exports = new class extends BaseCreep {
 
     /** @param {Creep} creep **/
     run(creep) {
-        const target = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
+        const target = this.findTarget(creep);
         if (creep.carry.energy < creep.carryCapacity && target) {
             if (creep.pickup(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
@@ -24,5 +24,22 @@ module.exports = new class extends BaseCreep {
                 this.actions.depositEnergy(creep);
             }
         }
+    }
+
+    findTarget(creep) {
+        const myMiners = _(Game.creeps).filter({memory: {role: 'miner', collector: creep.name}});
+
+        if (myMiners.length > 0) {
+            return creep.room.lookForAt(LOOK_RESOURCES, myMiners[0].pos);
+        }
+
+        const miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner' && !creep.memory.collector);
+
+        if (miners.length > 0) {
+            miners[0].memory.collector = creep.name;
+            return creep.room.lookForAt(LOOK_RESOURCES, miners[0].pos);
+        }
+
+        return false;
     }
 };
