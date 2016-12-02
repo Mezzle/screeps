@@ -17,7 +17,7 @@ module.exports = new class extends BaseCreep {
         if (miners == collectors) {
             this.actions.harvest(creep);
             if (creep.carry.energy) {
-                creep.drop(RESOURCE_ENERGY);
+                creep.drop(RESOURCE_ENERGY, creep.carry.energy);
             }
         } else {
             if (creep.carry.energy < creep.carryCapacity) {
