@@ -1,3 +1,5 @@
+const upgrade = require('action.upgrade');
+
 module.exports = (creep) => {
     const targets = creep.room.find(FIND_STRUCTURES, {
         filter: (structure) => {
@@ -10,5 +12,8 @@ module.exports = (creep) => {
         if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
             creep.moveTo(targets[0]);
         }
+    }
+    else {
+        upgrade(creep);
     }
 };
