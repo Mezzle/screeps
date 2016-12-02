@@ -10,6 +10,8 @@ module.exports = class {
             'depositEnergy': depositEnergy
         };
 
+        this.parts = [WORK, WORK, CARRY, MOVE];
+
         this.limit = 1;
     }
 
