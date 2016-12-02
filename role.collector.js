@@ -33,19 +33,21 @@ module.exports = new class extends BaseCreep {
             if (Game.creeps.hasOwnProperty(name)) {
                 let checkCreep = Game.creeps[name];
 
-                if (checkCreep.memory.collector) {
-                    if (checkCreep.memory.collector == creep.name) {
+                if (checkCreep.memory.role == 'miner') {
+                    if ('collector' in checkCreep.memory) {
+                        if (checkCreep.memory.collector == creep.name) {
+                            targetMiner = checkCreep;
+                            break;
+                        }
+                    } else {
                         targetMiner = checkCreep;
-                        break;
                     }
-                } else {
-                    targetMiner = checkCreep;
                 }
             }
         }
 
         if (targetMiner) {
-            if (!targetMiner.memory.collector) {
+            if (!('collector' in targetMiner.memory)) {
                 targetMiner.memory.collector = creep.name;
                 creep.say(targetMiner.name);
             }
