@@ -13,6 +13,8 @@ module.exports = new class extends BaseCreep {
     run(creep) {
         const target = this.findTarget(creep);
 
+        console.log(creep.name, creep.carry.energy, creep.carryCapacity, target);
+
         if (creep.carry.energy >= creep.carryCapacity) {
             this.actions.depositEnergy(creep);
         } else if (target) {
@@ -20,7 +22,7 @@ module.exports = new class extends BaseCreep {
                 creep.moveTo(target);
             }
         } else {
-            this.actions.harvest(creep);
+            this.actions.depositEnergy(creep);
         }
     }
 

@@ -26,10 +26,12 @@ module.exports = new class extends BaseCreep {
         }
         else {
             let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_STORAGE) && structure.energy > 0;
+                    filter: (structure) => {
+                        console.log(structure, structure.structureType);
+                        return (structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 0);
+                    }
                 }
-            });
+            );
 
             if (target) {
                 if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

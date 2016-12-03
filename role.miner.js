@@ -3,10 +3,9 @@ const BaseCreep = require('role.creep');
 module.exports = new class extends BaseCreep {
     constructor() {
         super();
-        this.parts = [WORK, CARRY, MOVE];
         this.role = 'miner';
 
-        this.limit = 5;
+        this.limit = 4;
     }
 
     /** @param {Creep} creep **/

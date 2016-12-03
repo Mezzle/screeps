@@ -1,34 +1,34 @@
 const BaseCreep = require('role.creep');
 
 module.exports = new class extends BaseCreep {
-
     constructor() {
         super();
-        this.role = 'builder';
-        this.limit = 2;
+
+        this.parts = [HEAL, CARRY, MOVE];
+        this.role = 'repairer';
+
+        this.limit = 1;
     }
 
     /** @param {Creep} creep **/
     run(creep) {
-
-        if (creep.memory.building && creep.carry.energy == 0) {
-            creep.memory.building = false;
+        if (creep.memory.repairing && creep.carry.energy == 0) {
+            creep.memory.repairing = false;
             creep.say('harvesting');
         }
-        if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
-            creep.memory.building = true;
-            creep.say('building');
+
+        if (!creep.memory.repairing && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.repairing = true;
+            creep.say('repairing');
         }
 
-        if (creep.memory.building) {
-            const target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
-            if (target) {
-                if (creep.build(target) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(target);
-                }
-            }
-            else {
-                this.actions.depositEnergy(creep);
+        if (creep.memory.repairing) {
+            let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                filter: (structure) => structure.hits < structure.hitsMax
+            });
+
+            if (creep.repair(target) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target);
             }
         }
         else {
