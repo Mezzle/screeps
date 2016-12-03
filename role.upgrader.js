@@ -25,17 +25,15 @@ module.exports = new class extends BaseCreep {
             this.actions.upgrade(creep);
         }
         else {
-            target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+            let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_STORAGE ||
-                        structure.structureType == STRUCTURE_SPAWN ||
-                        structure.structureType == STRUCTURE_TOWER) && structure.energy > 0;
+                    return (structure.structureType == STRUCTURE_STORAGE) && structure.energy > 0;
                 }
             });
 
             if (target) {
-                if (creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0]);
+                if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target);
                 }
             } else {
                 this.actions.harvest(creep);
