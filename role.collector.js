@@ -12,17 +12,15 @@ module.exports = new class extends BaseCreep {
     /** @param {Creep} creep **/
     run(creep) {
         const target = this.findTarget(creep);
-        if (creep.carry.energy < creep.carryCapacity && target) {
+
+        if (creep.carry.energy >= creep.carryCapacity) {
+            this.actions.depositEnergy(creep);
+        } else if (target) {
             if (creep.pickup(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
         } else {
-            if (creep.carry.energy < creep.carryCapacity) {
-                this.actions.harvest(creep);
-            }
-            else {
-                this.actions.depositEnergy(creep);
-            }
+            this.actions.harvest(creep);
         }
     }
 
