@@ -27,7 +27,6 @@ module.exports = new class extends BaseCreep {
         else {
             let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        console.log(structure, structure.structureType);
                         return (structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 0);
                     }
                 }

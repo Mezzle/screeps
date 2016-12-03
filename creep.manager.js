@@ -48,16 +48,19 @@ module.exports = new class {
         }
 
         let k;
+        let logMessage = '';
         for (k in this.roles) {
             if (this.roles.hasOwnProperty(k)) {
                 let roleCount = _.filter(Game.creeps, (creep) => creep.memory.role == k).length;
-                console.log(k + ': ' + roleCount);
+                logMessage += k + ': ' + roleCount + ' / ';
 
                 if (roleCount < this.roles[k].limit) {
                     this.spawn(k, Game.spawns['Spawn1']); // Todo: Dynamic Spawns
                 }
             }
         }
+
+        console.log(logMessage);
 
         for (name in Game.creeps) {
             if (Game.creeps.hasOwnProperty(name)) {
