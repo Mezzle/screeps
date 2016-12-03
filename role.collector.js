@@ -3,7 +3,7 @@ const BaseCreep = require('role.creep');
 module.exports = new class extends BaseCreep {
     constructor() {
         super();
-        this.parts = [CARRY, MOVE, MOVE];
+        this.parts = [CARRY, CARRY, MOVE, MOVE];
         this.role = 'collector';
 
         this.limit = 5;
@@ -12,8 +12,6 @@ module.exports = new class extends BaseCreep {
     /** @param {Creep} creep **/
     run(creep) {
         const target = this.findTarget(creep);
-
-        console.log(creep.name, creep.carry.energy, creep.carryCapacity, target);
 
         if (creep.carry.energy >= creep.carryCapacity) {
             this.actions.depositEnergy(creep);
