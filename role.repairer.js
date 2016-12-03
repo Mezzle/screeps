@@ -4,7 +4,7 @@ module.exports = new class extends BaseCreep {
     constructor() {
         super();
 
-        this.parts = [HEAL, CARRY, MOVE];
+        this.parts = [WORK, CARRY, MOVE];
         this.role = 'repairer';
 
         this.limit = 1;
