@@ -25,6 +25,15 @@ module.exports = new class extends BaseCreep {
     }
 
     findTarget(creep) {
+        let target;
+        if (creep.memory.resourcepile) {
+            let target = Game.getObjectById(creep.memory.resourcepile);
+
+            if (target) {
+                return target;
+            }
+        }
+
         let targetMiner;
 
         for (let name in Game.creeps) {
@@ -50,9 +59,18 @@ module.exports = new class extends BaseCreep {
                 creep.say(targetMiner.name);
             }
 
-            return creep.room.lookForAt(LOOK_ENERGY, targetMiner.pos)[0];
+            target = creep.room.lookForAt(LOOK_ENERGY, targetMiner.pos)[0];
+            if (target) {
+                creep.memory.resourcepile = target.id;
+            }
+            return target;
         }
 
-        return creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
+
+        target = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
+        if (target) {
+            creep.memory.resourcepile = target.id;
+        }
+        return target;
     }
 };
