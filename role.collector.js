@@ -62,10 +62,9 @@ module.exports = new class extends BaseCreep {
             target = creep.room.lookForAt(LOOK_ENERGY, targetMiner.pos)[0];
             if (target) {
                 creep.memory.resourcepile = target.id;
+                return target;
             }
-            return target;
         }
-
 
         target = creep.pos.findClosestByPath(FIND_DROPPED_ENERGY);
         if (target) {
