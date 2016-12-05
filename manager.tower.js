@@ -1,3 +1,5 @@
+const structureTower = require('structure.tower');
+
 module.exports = {
   run: () => {
      for (roomName in Game.rooms) {
@@ -5,7 +7,7 @@ module.exports = {
              let towers = Game.rooms[roomName].find(
                  FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 
-             towers.forEach(tower => tower.rep)
+             towers.forEach(tower => structureTower.run(tower));
          }
      }
   }
