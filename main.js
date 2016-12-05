@@ -1,5 +1,5 @@
 const creepManager = require('manager.creep');
-const towerManager = requre('manager.tower');
+const towerManager = require('manager.tower');
 
 module.exports.loop = function () {
     creepManager.run();
