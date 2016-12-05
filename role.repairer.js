@@ -7,7 +7,7 @@ module.exports = new class extends BaseCreep {
         this.parts = [WORK, CARRY, MOVE];
         this.role = 'repairer';
 
-        this.limit = 1;
+        this.limit = 0;
     }
 
     /** @param {Creep} creep **/
@@ -30,8 +30,7 @@ module.exports = new class extends BaseCreep {
             if (creep.repair(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
-        }
-        else {
+        } else {
             let target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 0);
